@@ -3,52 +3,51 @@ package org.example;
 public class Radio {
     private int radio;
     private int volume;
+    private int maxRadio;
+    private int minRadio;
+    private int maxVolume;
+    private int minVolume;
 
-    public void nextStation() {
-        if (radio != 9) {
-            radio++;
-        } else {
-            radio = 0;
-        }
+    public Radio() {
+        maxRadio = 9;
+        minRadio = 0;
+        maxVolume = 100;
+        minVolume = 0;
     }
 
-    public void prevStation() {
-        if (radio != 0) {
-            radio--;
-        } else {
-            radio = 9;
-        }
+    public Radio(int sizeMaxRadio) {
+        maxRadio = sizeMaxRadio - 1;
     }
 
-    public void increaseVolume() {
-        if (volume != 10) {
-            volume++;
-        } else {
-            volume = 10;
-        }
+    public int getMaxRadio() {
+        return maxRadio;
     }
 
-    public void reductionVolume() {
-        if (volume != 0) {
-            volume--;
-        } else {
-            volume = 0;
-        }
+    public int getMaxVolume() {
+        return maxVolume;
     }
 
+    public int getMinRadio() {
+        return minRadio;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
 
     public int getRadio() {
+
         return radio;
     }
 
-    public void setRadio(int radiostation) {
-        if (radiostation < 0) {
+    public void setRadio(int radio) {
+        if (radio < minRadio) {
             return;
         }
-        if (radiostation > 9) {
+        if (radio > maxRadio) {
             return;
         }
-        this.radio = radiostation;
+        this.radio = radio;
     }
 
     public int getVolume() {
@@ -56,12 +55,46 @@ public class Radio {
     }
 
     public void setVolume(int volume) {
-        if (volume < 0) {
+        if (volume < minVolume) {
             return;
         }
-        if (volume > 10) {
+        if (volume > maxVolume) {
             return;
         }
         this.volume = volume;
     }
+
+
+    public void nextStation() {
+        if (radio != maxRadio) {
+            radio++;
+        } else {
+            radio = minRadio;
+        }
+    }
+
+    public void prevStation() {
+        if (radio != minRadio) {
+            radio--;
+        } else {
+            radio = maxRadio;
+        }
+    }
+
+    public void increaseVolume() {
+        if (volume != maxVolume) {
+            volume++;
+        } else {
+            volume = maxVolume;
+        }
+    }
+
+    public void reductionVolume() {
+        if (volume != minVolume) {
+            volume--;
+        } else {
+            volume = minVolume;
+        }
+    }
+
 }
